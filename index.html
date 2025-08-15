@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Powered Leads for Victoria Businesses</title>
+  <meta name="description" content="Get more customers with AI-driven marketing. We generate high-quality leads for local businesses in Victoria, Australia — fast, smart, and hands-off." />
+
+  <!-- Google Fonts: Inter (clean & modern) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f9fbfd;
+      padding-bottom: 60px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #111;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    /* Gradient Buttons */
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+      text-align: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 20px rgba(13, 110, 253, 0.4);
+      background: linear-gradient(135deg, #0b5ed7 0%, #0a58ca 100%);
+    }
+
+    .btn.green {
+      background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .btn.green:hover {
+      background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+      box-shadow: 0 7px 20px rgba(40, 167, 69, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 100px 20px 80px;
+      background: linear-gradient(135deg, #e6f7ff 0%, #d4f0fc 100%);
+      border-bottom: 8px solid #0d6efd;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://placehold.co/1920x1080/e6f7ff/0d6efd?text=AI+Marketing') no-repeat center center;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      color: #0d6efd;
+      text-shadow: 0 1px 2px rgba(13, 110, 253, 0.1);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 24px;
+      color: #2c3e50;
+    }
+
+    /* Section General */
+    section {
+      padding: 80px 0;
+    }
+
+    section h2 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 50px;
+      color: #0d6efd;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #28a745;
+      border-radius: 2px;
+    }
+
+    /* How It Works */
+    .how-it-works {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid #e9ecef;
+    }
+
+    .how-it-works p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    /* Benefits */
+    .benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+      margin: 0 -10px;
+    }
+
+    .benefit {
+      flex: 1 1 250px;
+      max-width: 300px;
+      text-align: center;
+      padding: 30px 20px;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid #e9ecef;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+      border-color: #0d6efd;
+    }
+
+    .benefit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #0d6efd, #28a745);
+    }
+
+    .benefit i {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #0d6efd, #28a745);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .benefit h3 {
+      color: #0d6efd;
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      text-align: center;
+      padding: 80px 20px;
+      border-radius: 20px;
+      margin: 0 20px;
+    }
+
+    .testimonial {
+      max-width: 650px;
+      margin: 30px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border-left: 5px solid #28a745;
+      position: relative;
+    }
+
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 5rem;
+      color: #0d6efd;
+      opacity: 0.1;
+      font-family: Georgia, serif;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #444;
+      position: relative;
+      z-index: 1;
+    }
+
+    .client {
+      font-weight: 600;
+      color: #0d6efd;
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      max-width: 650px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      border: 1px solid #e9ecef;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #0d6efd;
+      font-size: 1.1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+    }
+
+    textarea {
+      height: 140px;
+      resize: vertical;
+    }
+
+    /* Footer CTA */
+    .cta-footer {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #0d6efd 0%, #28a745 100%);
+      color: white;
+      border-radius: 20px;
+      margin: 0 20px;
+      box-shadow: 0 15px 40px rgba(13, 110, 253, 0.3);
+    }
+
+    .cta-footer h2 {
+      color: white;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-footer p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .cta-footer .btn {
+      background: white;
+      color: #0d6efd;
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(255,255,255,0.3);
+    }
+
+    .cta-footer .btn:hover {
+      background: #f8f9fa;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 25px rgba(255,255,255,0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      section h2 {
+        font-size: 1.8rem;
+      }
+      .benefits {
+        flex-direction: column;
+        align-items: center;
+      }
+      .benefit {
+        max-width: 100%;
+      }
+      .contact-form {
+        padding: 30px 20px;
+      }
+    }
+
+    /* Animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .benefit:hover i {
+      animation: float 2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Get More Customers with AI-Powered Marketing</h1>
+      <p>We use artificial intelligence to bring your business more leads, faster — so you can focus on running it.</p>
+      <a href="#contact" class="btn">Get Leads Now</a>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section>
+    <div class="container">
+      <h2>About / How It Works</h2>
+      <div class="how-it-works">
+        <p>We help local businesses in Victoria attract more customers using smart AI technology. We create high-performing ads, set up automated follow-up systems, and use intelligent targeting to connect you with real customers who are ready to buy — all without you lifting a finger.</p>
+        <p>Our AI learns what works, optimizes your campaigns in real time, and delivers more qualified leads than traditional marketing. We focus on your local market, so you get customers from your community.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section>
+    <div class="container">
+      <h2>Why Choose AI-Powered Leads?</h2>
+      <div class="benefits">
+        <div class="benefit">
+          <i class="fas fa-bolt"></i>
+          <h3>More Leads in Less Time</h3>
+          <p>AI works 24/7 to find and convert customers — so you get results faster than traditional marketing methods.</p>
+        </div>
+        <div class="benefit">
+          <i class="fas fa-wallet"></i>
+          <h3>No Wasted Ad Spend</h3>
+          <p>Precise targeting means your budget goes only to people likely to buy — no more guessing or wasted money.</p>
+        </div>
+        <div class="benefit">
+          <i class="fas fa-hand-paper"></i>
+          <h3>Hands-Off for You</h3>
+          <p>Set it once and let AI run your marketing — no daily management needed. Focus on your business, not ads.</p>
+        </div>
+        <div class="benefit">
+          <i class="fas fa-chart-line"></i>
+          <h3>Proven Results with AI</h3>
+          <p>Our system continuously improves, delivering better leads over time with data-driven optimization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>What Local Businesses Say</h2>
+      <div class="testimonial">
+        <p>"I was skeptical about AI, but within 3 weeks I had 15 new customers. This service paid for itself 5 times over. The leads were high quality and ready to buy."</p>
+        <div class="client">— Jamie R., Cafe Owner, Melbourne</div>
+      </div>
+      <div class="testimonial">
+        <p>"Finally, a marketing solution that actually works for small businesses. The leads are real, and I don’t have to spend time managing ads. My revenue increased by 40% in two months."</p>
+        <div class="client">— Priya M., Hair Salon, Geelong</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact">
+    <div class="container">
+      <h2>Get Your First Leads Today</h2>
+      <form class="contact-form" action="https://formspree.io/f/mqknwvow" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Tell us about your business</label>
+          <textarea id="message" name="message" placeholder="e.g., I run a plumbing business in Ballarat and want more local customers..." required></textarea>
+        </div>
+        <button type="submit" class="btn">Get Leads Now</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="cta-footer">
+    <div class="container">
+      <h2>Ready to Grow Your Business?</h2>
+      <p>Join other Victoria businesses using AI to get more customers — without the marketing hassle.</p>
+      <a href="#contact" class="btn">Get Leads Now</a>
+    </div>
+  </section>
+
+  <!-- Formspree Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector('form');
+      form.addEventListener("submit", function () {
+        setTimeout(() => {
+          alert("Thanks! We'll contact you within 24 hours to set up your AI lead system.");
+        }, 500);
+      });
+    });
+  </script>
+
+</body>
+</html>
