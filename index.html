@@ -68,7 +68,7 @@
             transform: translateY(-2px);
         }
 
-        /* Hero Section */
+        /* Hero Section - NO FLOATING ICONS */
         .hero {
             height: 100vh;
             display: flex;
@@ -76,59 +76,94 @@
             justify-content: center;
             position: relative;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow: hidden;
         }
 
         .hero-content {
             text-align: center;
             z-index: 10;
-            max-width: 800px;
+            max-width: 900px;
             padding: 0 2rem;
+            margin-bottom: 8rem; /* Add space for bottom tabs */
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 800;
             color: #fff;
             margin-bottom: 1.5rem;
             line-height: 1.1;
         }
 
+        .typing-animation {
+            border-right: 3px solid #667eea;
+            animation: blink 1s infinite;
+            display: inline-block;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #667eea; }
+        }
+
         .hero .subtitle {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #b3b3b3;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
+            margin-bottom: 3rem;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.6;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 4rem;
         }
 
         .btn {
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             font-size: 1.1rem;
             font-weight: 600;
             border: none;
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-decoration: none;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
         .btn-secondary {
@@ -140,6 +175,56 @@
         .btn-secondary:hover {
             background: #667eea;
             transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Interactive Features at Bottom - MOVED LOWER */
+        .hero-features {
+            position: absolute;
+            bottom: 2%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 3rem;
+            z-index: 10;
+        }
+
+        .feature-item {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            padding: 1.5rem;
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 120px;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            color: #fff;
+            background: rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.3);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-item .icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover .icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-item .text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            line-height: 1.3;
         }
 
         /* 3D Canvas */
@@ -214,11 +299,9 @@
         }
 
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .about-text {
@@ -226,33 +309,9 @@
         }
 
         .about-text p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: #b3b3b3;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-        }
-
-        .stat h3 {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat p {
+            margin-bottom: 2rem;
             color: #b3b3b3;
         }
 
@@ -273,7 +332,8 @@
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 1rem;
             background: rgba(255, 255, 255, 0.1);
@@ -284,7 +344,8 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: #667eea;
             background: rgba(255, 255, 255, 0.15);
@@ -295,28 +356,52 @@
             resize: vertical;
         }
 
+        .contact-info {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-info p {
+            color: #b3b3b3;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info .contact-detail {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .nav-links {
                 display: none;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .hero-features {
+                flex-direction: column;
+                gap: 1rem;
+                bottom: 1%;
             }
 
-            .stats {
-                grid-template-columns: 1fr;
+            .feature-item {
+                padding: 1rem;
+                min-width: 100px;
             }
 
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .hero-content {
+                margin-bottom: 12rem; /* More space on mobile */
             }
         }
 
@@ -353,16 +438,33 @@
         </div>
     </nav>
 
-    <!-- Home Page -->
+    <!-- Home Page - NO FLOATING EMOJIS -->
     <div id="home" class="section active">
         <section class="hero">
             <canvas id="three-canvas"></canvas>
+            
             <div class="hero-content">
-                <h1>Transform Your <span class="gradient-text">AI Vision</span><br>Into Revenue</h1>
-                <p class="subtitle">We help AI startups and businesses monetize their innovations while connecting enterprises with cutting-edge AI solutions that drive growth.</p>
+                <h1>Transform Your <span class="gradient-text">AI Vision</span><br>Into <span id="typing-text" class="typing-animation">Revenue</span></h1>
+                <p class="subtitle">We help AI startups and businesses monetize their innovations while connecting enterprises with cutting-edge AI solutions that drive explosive growth.</p>
                 <div class="cta-buttons">
                     <a href="#" onclick="showPage('services')" class="btn btn-primary">Explore Services</a>
                     <a href="#" onclick="showPage('contact')" class="btn btn-secondary">Get Started</a>
+                </div>
+            </div>
+            
+            <!-- Interactive Features at Bottom - MOVED LOWER -->
+            <div class="hero-features">
+                <div class="feature-item" onclick="showPage('services')">
+                    <div class="icon">💼</div>
+                    <div class="text">Enterprise<br>Solutions</div>
+                </div>
+                <div class="feature-item" onclick="showPage('services')">
+                    <div class="icon">🚀</div>
+                    <div class="text">Startup<br>Acceleration</div>
+                </div>
+                <div class="feature-item" onclick="showPage('about')">
+                    <div class="icon">🤝</div>
+                    <div class="text">Investor<br>Network</div>
                 </div>
             </div>
         </section>
@@ -417,21 +519,9 @@
                     
                     <p>We understand that having revolutionary AI technology is just the beginning. The real challenge lies in translating that innovation into sustainable revenue streams, scalable business models, and market penetration strategies.</p>
                     
-                    <p>Our approach is holistic – we don't just consult, we partner with you to ensure your AI initiatives deliver measurable business value and long-term growth.</p>
-                </div>
-                <div class="stats">
-                    <div class="stat">
-                        <h3>50+</h3>
-                        <p>AI Startups Helped</p>
-                    </div>
-                    <div class="stat">
-                        <h3>$10M+</h3>
-                        <p>Revenue Generated</p>
-                    </div>
-                    <div class="stat">
-                        <h3>95%</h3>
-                        <p>Success Rate</p>
-                    </div>
+                    <p>Our approach is holistic – we don't just consult, we partner with you to ensure your AI initiatives deliver measurable business value and long-term growth. We can even help connect promising AI startups with our extensive network of investors for potential acquisitions or funding opportunities.</p>
+                    
+                    <p>Beyond consulting, we're also actively developing our own AI startups, giving us firsthand experience in the challenges and opportunities that AI entrepreneurs face in today's rapidly evolving market.</p>
                 </div>
             </div>
         </div>
@@ -441,7 +531,7 @@
     <div id="contact" class="section">
         <div class="page-content">
             <h2 class="section-title">Get In Touch</h2>
-            <form class="contact-form" onsubmit="handleSubmit(event)">
+            <form class="contact-form" action="https://formspree.io/f/xqadyoko" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
@@ -456,7 +546,7 @@
                 </div>
                 <div class="form-group">
                     <label for="service">Service Interest</label>
-                    <select id="service" name="service" style="width: 100%; padding: 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; color: #fff;">
+                    <select id="service" name="service">
                         <option value="">Select a service</option>
                         <option value="startup">AI Startup Monetization</option>
                         <option value="enterprise">Enterprise AI Integration</option>
@@ -469,6 +559,13 @@
                     <textarea id="message" name="message" placeholder="Tell us about your AI project or business needs..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <p>Get in touch directly:</p>
+                    <p class="contact-detail">📧 mason.gg.stow@gmail.com</p>
+                    <p class="contact-detail">📱 Instagram: @ai_synergyimpact</p>
+                </div>
             </form>
         </div>
     </div>
@@ -477,6 +574,34 @@
     <script>
         let scene, camera, renderer, cube, particles;
         let mouseX = 0, mouseY = 0;
+        let typingWords = ['Revenue', 'Success', 'Growth', 'Impact', 'Innovation'];
+        let currentWord = 0;
+
+        function typeWriter() {
+            const textElement = document.getElementById('typing-text');
+            if (!textElement) return;
+            
+            const currentText = typingWords[currentWord];
+            let i = 0;
+            
+            // Clear text
+            textElement.textContent = '';
+            
+            function type() {
+                if (i < currentText.length) {
+                    textElement.textContent += currentText.charAt(i);
+                    i++;
+                    setTimeout(type, 150);
+                } else {
+                    // Wait before starting next word
+                    setTimeout(() => {
+                        currentWord = (currentWord + 1) % typingWords.length;
+                        typeWriter();
+                    }, 3000);
+                }
+            }
+            type();
+        }
 
         function initThreeJS() {
             // Scene setup
@@ -499,20 +624,20 @@
 
             // Create particle system
             const particleGeometry = new THREE.BufferGeometry();
-            const particleCount = 1000;
+            const particleCount = 1500;
             const positions = new Float32Array(particleCount * 3);
 
             for (let i = 0; i < particleCount * 3; i++) {
-                positions[i] = (Math.random() - 0.5) * 100;
+                positions[i] = (Math.random() - 0.5) * 120;
             }
 
             particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
             
             const particleMaterial = new THREE.PointsMaterial({
                 color: 0x764ba2,
-                size: 0.5,
+                size: 1.2,
                 transparent: true,
-                opacity: 0.6
+                opacity: 0.7
             });
 
             particles = new THREE.Points(particleGeometry, particleMaterial);
@@ -533,15 +658,19 @@
             requestAnimationFrame(animate);
 
             // Rotate cube
-            cube.rotation.x += 0.005;
-            cube.rotation.y += 0.005;
+            cube.rotation.x += 0.008;
+            cube.rotation.y += 0.008;
 
             // Move particles
-            particles.rotation.y += 0.001;
+            particles.rotation.y += 0.002;
+            particles.rotation.x += 0.001;
 
-            // Mouse interaction
-            cube.rotation.x += mouseY * 0.01;
-            cube.rotation.y += mouseX * 0.01;
+            // Mouse interaction - MUCH LESS INTENSE
+            cube.rotation.x += mouseY * 0.003;
+            cube.rotation.y += mouseX * 0.003;
+            
+            particles.rotation.y += mouseX * 0.001;
+            particles.rotation.x += mouseY * 0.001;
 
             renderer.render(scene, camera);
         }
@@ -566,12 +695,6 @@
             }, 100);
         }
 
-        // Form submission
-        function handleSubmit(event) {
-            event.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-        }
-
         // Window resize handler
         window.addEventListener('resize', () => {
             if (camera && renderer) {
@@ -584,6 +707,7 @@
         // Initialize on load
         window.addEventListener('load', () => {
             initThreeJS();
+            setTimeout(typeWriter, 1000); // Start typing animation after a delay
             
             // Initialize page content animations
             const pageContents = document.querySelectorAll('.page-content');
@@ -594,7 +718,7 @@
             });
         });
 
-        // Smooth navigation scrolling for single-page feel
+        // Smooth navigation
         document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
