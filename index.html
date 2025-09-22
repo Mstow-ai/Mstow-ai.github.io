@@ -34,7 +34,7 @@
 
         .nav-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -49,61 +49,36 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Stage Navigation Dots */
-        .stage-navigation {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 15;
+        .nav-menu {
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            gap: 2rem;
+            list-style: none;
         }
 
-        .stage-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            border: 2px solid transparent;
-        }
-
-        .stage-dot.active {
-            background: #667eea;
-            transform: scale(1.4);
-            box-shadow: 0 0 25px rgba(102, 126, 234, 0.8);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .stage-dot::after {
-            content: attr(data-stage);
-            position: absolute;
-            right: 25px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #fff;
-            font-size: 0.9rem;
+        .nav-menu a {
+            color: #b3b3b3;
+            text-decoration: none;
             font-weight: 500;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            background: rgba(0, 0, 0, 0.8);
+            font-size: 1rem;
             padding: 0.5rem 1rem;
             border-radius: 8px;
-            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
-        .stage-dot:hover::after {
-            opacity: 1;
+        .nav-menu a:hover {
+            color: #fff;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
         }
 
-        .stage-dot:hover {
-            background: rgba(102, 126, 234, 0.7);
-            transform: scale(1.2);
+        .nav-menu a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+        }
+
+        /* Navigation Menu - Remove complex hover system */
+        .navigation-hint {
+            display: none;
         }
 
         /* 3D Canvas */
@@ -410,6 +385,20 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .nav-menu a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+
             .hero-title {
                 font-size: 2.8rem;
             }
@@ -427,14 +416,6 @@
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
-            }
-
-            .stage-navigation {
-                right: 1rem;
-            }
-
-            .stage-dot::after {
-                display: none;
             }
 
             .section {
@@ -470,16 +451,14 @@
     <nav>
         <div class="nav-container">
             <div class="logo">AI Synergy</div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('services')">Services</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('about')">About</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('contact')">Contact</a></li>
+            </ul>
         </div>
     </nav>
-
-    <!-- Stage Navigation Dots -->
-    <div class="stage-navigation">
-        <div class="stage-dot active" data-stage="Home" onclick="showPage('home')"></div>
-        <div class="stage-dot" data-stage="Services" onclick="showPage('services')"></div>
-        <div class="stage-dot" data-stage="About" onclick="showPage('about')"></div>
-        <div class="stage-dot" data-stage="Contact" onclick="showPage('contact')"></div>
-    </div>
 
     <!-- 3D Canvas Background -->
     <canvas id="three-canvas"></canvas>
@@ -597,11 +576,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        let scene, camera, renderer, cube, particles, torus;
+        let scene, camera, renderer, cube, particles, torus, raycaster, mouse;
         let mouseX = 0, mouseY = 0;
         let typingWords = ['Revenue', 'Success', 'Growth', 'Impact', 'Innovation'];
         let currentWord = 0;
         let isTyping = false;
+        let currentPageIndex = 0;
+        const pages = ['home', 'services', 'about', 'contact'];
+        const pageNames = ['Home', 'Services', 'About', 'Contact'];
+        let isHoveringCube = false;
+        let cubeHoverTimeout;
 
         function typeWriter() {
             if (isTyping) return;
@@ -643,7 +627,7 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 renderer.setClearColor(0x000000, 0);
 
-                // Create animated cube
+                // Create animated cube - just for visual effect
                 const cubeGeometry = new THREE.BoxGeometry(2, 2, 2);
                 const cubeMaterial = new THREE.MeshBasicMaterial({ 
                     color: 0x667eea,
@@ -652,7 +636,7 @@
                     opacity: 0.6
                 });
                 cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-                cube.position.set(-3, 0, 0);
+                cube.position.set(-8, -3, -5);
                 scene.add(cube);
 
                 // Create torus
@@ -664,7 +648,7 @@
                     opacity: 0.7
                 });
                 torus = new THREE.Mesh(torusGeometry, torusMaterial);
-                torus.position.set(3, 0, 0);
+                torus.position.set(8, 3, -5);
                 scene.add(torus);
 
                 // Create particle system
@@ -698,7 +682,7 @@
 
                 camera.position.z = 8;
 
-                // Mouse movement
+                // Mouse movement for visual effects
                 document.addEventListener('mousemove', (event) => {
                     mouseX = (event.clientX / window.innerWidth) * 2 - 1;
                     mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -720,13 +704,13 @@
             if (cube) {
                 cube.rotation.x += 0.01;
                 cube.rotation.y += 0.01;
-                cube.position.y = Math.sin(time) * 0.5;
+                cube.position.y = -3 + Math.sin(time) * 0.5;
             }
 
             if (torus) {
                 torus.rotation.x += 0.005;
                 torus.rotation.z += 0.015;
-                torus.position.y = Math.cos(time) * 0.5;
+                torus.position.y = 3 + Math.cos(time) * 0.5;
             }
 
             if (particles) {
@@ -765,22 +749,19 @@
                 }
             });
 
-            // Update navigation dots
-            document.querySelectorAll('.stage-dot').forEach((dot, index) => {
-                dot.classList.remove('active');
-            });
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            const activeNavLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
+            }
 
             // Show target section
             const targetSection = document.getElementById(pageId);
             if (targetSection) {
                 targetSection.classList.add('active');
-                
-                // Update active dot
-                const pageNames = ['home', 'services', 'about', 'contact'];
-                const activeIndex = pageNames.indexOf(pageId);
-                if (activeIndex !== -1) {
-                    document.querySelectorAll('.stage-dot')[activeIndex].classList.add('active');
-                }
 
                 // Animate page content
                 setTimeout(() => {
