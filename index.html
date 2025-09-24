@@ -1,1 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Synergy - AI Monetization & Business Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #b3b3b3;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #fff;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a.active {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+        }
+
+        /* 3D Canvas */
+        #three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Sections */
+        .section {
+            min-height: 100vh;
+            padding: 8rem 2rem 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            min-height: 100vh;
+        }
+
+        #home.active {
+            display: flex;
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #b3b3b3;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .typing-animation {
+            border-right: 3px solid #667eea;
+            animation: blink 1s infinite;
+            display: inline-block;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #667eea; }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Services Section */
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #b3b3b3;
+            line-height: 1.6;
+        }
+
+        .automation-example {
+            margin-top: 1.5rem;
+            text-align: left;
+            background: rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .automation-example strong {
+            color: #667eea;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .automation-example span {
+            display: block;
+            color: #b3b3b3;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .automation-example span::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #b3b3b3;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #888;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .form-group select option {
+            background: #1a1a2e;
+            color: #fff;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-info p {
+            color: #b3b3b3;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info .contact-detail {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Page transition */
+        .page-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            width: 100%;
+        }
+
+        .page-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .nav-menu a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .contact-form,
+            .about-content {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AI Synergy</div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('services')">Services</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('reviews')">Reviews</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('about')">About</a></li>
+                <li><a href="#" class="nav-link" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 3D Canvas Background -->
+    <canvas id="three-canvas"></canvas>
+
+    <!-- Home Page -->
+    <div id="home" class="section active">
+        <div class="hero-content">
+            <h1 class="hero-title">Transform Your <span class="gradient-text">AI Vision</span><br>Into <span id="typing-text" class="typing-animation">Revenue</span></h1>
+            <p class="hero-subtitle">We help AI startups and businesses monetize their innovations while connecting enterprises with cutting-edge AI solutions that drive explosive growth.</p>
+            <div class="cta-buttons">
+                <a href="#" onclick="showPage('services')" class="btn btn-primary">Explore Services</a>
+                <a href="#" onclick="showPage('contact')" class="btn btn-secondary">Get Started</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="section">
+        <div class="page-content">
+            <h2 class="section-title">Multi-Layered AI Automation</h2>
+            <p style="text-align: center; color: #e0e0e0; font-size: 1.2rem; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;">We build comprehensive AI ecosystems with multiple layers of automation that work together to streamline every aspect of your business operations.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Operations Automation Ecosystem</h3>
+                    <p>Streamline your entire operational workflow with interconnected automation layers that handle everything from data entry to complex decision-making processes.</p>
+                    <div class="automation-example">
+                        <strong>Multi-Layer Example:</strong>
+                        <span>Document intake & processing</span>
+                        <span>Data validation & enrichment</span>
+                        <span>Workflow routing & approvals</span>
+                        <span>Output generation & distribution</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🧠</div>
+                    <h3>Customer Support Ecosystem</h3>
+                    <p>Deploy intelligent support systems with cascading automation layers that escalate complexity while maintaining consistent service quality 24/7.</p>
+                    <div class="automation-example">
+                        <strong>Multi-Layer Example:</strong>
+                        <span>Initial query classification</span>
+                        <span>Knowledge base automation</span>
+                        <span>Specialist routing & scheduling</span>
+                        <span>Follow-up & satisfaction tracking</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Analytics & Intelligence Ecosystem</h3>
+                    <p>Transform data chaos into actionable insights through layered automation that collects, processes, analyzes, and reports with minimal human intervention.</p>
+                    <div class="automation-example">
+                        <strong>Multi-Layer Example:</strong>
+                        <span>Data collection & aggregation</span>
+                        <span>Cleaning & standardization</span>
+                        <span>Pattern recognition & analysis</span>
+                        <span>Insight generation & alerts</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Marketing Automation Ecosystem</h3>
+                    <p>Orchestrate complex marketing campaigns through sophisticated automation layers that adapt, optimize, and scale your reach across all channels.</p>
+                    <div class="automation-example">
+                        <strong>Multi-Layer Example:</strong>
+                        <span>Audience segmentation & targeting</span>
+                        <span>Content personalization</span>
+                        <span>Campaign optimization & A/B testing</span>
+                        <span>Attribution & ROI analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study at Bottom -->
+            <div style="background: rgba(102, 126, 234, 0.25); border: 1px solid rgba(102, 126, 234, 0.5); border-radius: 20px; padding: 3rem; margin: 4rem 0;">
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <h3 style="color: #fff; font-size: 2rem; margin-bottom: 1rem;">🎯 Case Study: Lead Capturing Ecosystem</h3>
+                    <p style="color: #f0f0f0; font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">See how our 4-layer automation system transforms lead generation into a self-operating machine:</p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                    <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.25); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🕸️</div>
+                        <h4 style="color: #fff; font-size: 1.3rem; margin-bottom: 1rem;">1. Capture Everywhere</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem;">AI chatbots, optimized forms, and social monitoring work 24/7 to catch every potential lead.</p>
+                        <div style="font-size: 0.9rem; color: #87ceeb;">Website • Social Media • Landing Pages</div>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.25); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                        <h4 style="color: #fff; font-size: 1.3rem; margin-bottom: 1rem;">2. Smart Scoring</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem;">Intelligent algorithms instantly analyze behavior, budget, and intent to rank lead quality.</p>
+                        <div style="font-size: 0.9rem; color: #87ceeb;">Hot • Warm • Cold • Disqualified</div>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.25); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">💌</div>
+                        <h4 style="color: #fff; font-size: 1.3rem; margin-bottom: 1rem;">3. Personalized Nurturing</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem;">Custom email sequences and content adapt based on lead behavior and preferences.</p>
+                        <div style="font-size: 0.9rem; color: #87ceeb;">Email • SMS • Retargeting • Content</div>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.25); text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+                        <h4 style="color: #fff; font-size: 1.3rem; margin-bottom: 1rem;">4. Seamless Handoff</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem;">Qualified leads automatically book meetings and get transferred to sales with full context.</p>
+                        <div style="font-size: 0.9rem; color: #87ceeb;">Booking • CRM • Sales Alerts • Context</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.25);">
+                    <p style="color: #87ceeb; font-size: 1.2rem; font-weight: 600;">Result: 10x more qualified leads with 80% less manual work</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: rgba(102, 126, 234, 0.15); border-radius: 20px; border: 1px solid rgba(102, 126, 234, 0.3);">
+                <h3 style="color: #fff; font-size: 2rem; margin-bottom: 1rem;">Ready to Build Your Multi-Layered AI System?</h3>
+                <p style="color: #e0e0e0; font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Let's design a comprehensive automation ecosystem with multiple interconnected layers that transform your business operations from the ground up.</p>
+                <a href="#" onclick="showPage('contact')" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.5rem 3rem;">Start Your Automation Journey</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Page -->
+    <div id="reviews" class="section">
+        <div class="page-content">
+            <h2 class="section-title">Client Success Stories</h2>
+            <p style="text-align: center; color: #e0e0e0; font-size: 1.2rem; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;">See how our multi-layered AI automation systems have transformed businesses across different industries.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 3rem; margin-bottom: 4rem;">
+                
+                <div style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 3rem;">
+                    <div style="color: #ffd700; font-size: 2rem; margin-bottom: 1.5rem; text-align: center;">★★★★★</div>
+                    <p style="color: #f5f5f5; font-size: 1.2rem; line-height: 1.7; margin-bottom: 2.5rem; text-align: center;">"AI Synergy transformed our lead generation completely. Their multi-layer automation system increased our qualified leads by 300% while reducing our manual workload by 75%. The integration was seamless and their team understood our educational platform perfectly."</p>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.25); padding-top: 2rem; text-align: center;">
+                        <div style="color: #fff; font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem;">Henry Sheffield</div>
+                        <div style="color: #87ceeb; font-size: 1rem; margin-bottom: 1rem;">CEO, SummitStudy.app</div>
+                        <div style="color: #d0d0d0; font-size: 0.9rem; font-style: italic;">Educational Technology Platform</div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 3rem;">
+                    <div style="color: #ffd700; font-size: 2rem; margin-bottom: 1.5rem; text-align: center;">★★★★★</div>
+                    <p style="color: #f5f5f5; font-size: 1.2rem; line-height: 1.7; margin-bottom: 2.5rem; text-align: center;">"Working with AI Synergy was a game-changer for our agency. They built us a comprehensive client management ecosystem that automated everything from initial inquiries to project delivery. Our efficiency improved by 400% and client satisfaction scores went through the roof."</p>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.25); padding-top: 2rem; text-align: center;">
+                        <div style="color: #fff; font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem;">Hugo Deszc</div>
+                        <div style="color: #87ceeb; font-size: 1rem; margin-bottom: 1rem;">Founder, Aether Loom Web Agency</div>
+                        <div style="color: #d0d0d0; font-size: 0.9rem; font-style: italic;">Digital Marketing & Web Development</div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div style="text-align: center; background: rgba(102, 126, 234, 0.2); border-radius: 20px; padding: 3rem; border: 1px solid rgba(102, 126, 234, 0.4);">
+                <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 1rem;">Ready to Join Our Success Stories?</h3>
+                <p style="color: #f0f0f0; font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Let's build a custom AI automation ecosystem that delivers the same transformational results for your business.</p>
+                <a href="#" onclick="showPage('contact')" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.5rem 3rem;">Start Your Success Story</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="section">
+        <div class="page-content">
+            <h2 class="section-title">About AI Synergy</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>At AI Synergy, we bridge the gap between AI innovation and business success. Our team combines deep technical expertise with proven business acumen to help startups monetize their AI breakthroughs and assist enterprises in leveraging AI for competitive advantage.</p>
+                    
+                    <p>We understand that having revolutionary AI technology is just the beginning. The real challenge lies in translating that innovation into sustainable revenue streams, scalable business models, and market penetration strategies.</p>
+                    
+                    <p>Our approach is holistic – we don't just consult, we partner with you to ensure your AI initiatives deliver measurable business value and long-term growth. We can even help connect promising AI startups with our extensive network of investors for potential acquisitions or funding opportunities.</p>
+                    
+                    <p>Beyond consulting, we're also actively developing our own AI startups, giving us firsthand experience in the challenges and opportunities that AI entrepreneurs face in today's rapidly evolving market.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="section">
+        <div class="page-content">
+            <h2 class="section-title">Get In Touch</h2>
+            <form class="contact-form" action="https://formspree.io/f/xqadyoko" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company">
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Interest</label>
+                    <select id="service" name="service">
+                        <option value="">Select a service</option>
+                        <option value="operations">Operations Automation Ecosystem</option>
+                        <option value="support">Customer Support Ecosystem</option>
+                        <option value="analytics">Analytics & Intelligence Ecosystem</option>
+                        <option value="marketing">Marketing Automation Ecosystem</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your AI project or business needs..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                
+                <div class="contact-info">
+                    <p>Get in touch directly:</p>
+                    <p class="contact-detail">📧 mason.gg.stow@gmail.com</p>
+                    <p class="contact-detail">📱 Instagram: @ai_synergyimpact</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let scene, camera, renderer, cube, particles, torus;
+        let mouseX = 0, mouseY = 0;
+        let typingWords = ['Revenue', 'Success', 'Growth', 'Impact', 'Innovation'];
+        let currentWord = 0;
+        let isTyping = false;
+
+        function typeWriter() {
+            if (isTyping) return;
+            
+            const textElement = document.getElementById('typing-text');
+            if (!textElement) return;
+            
+            isTyping = true;
+            const currentText = typingWords[currentWord];
+            let i = 0;
+            
+            textElement.textContent = '';
+            
+            function type() {
+                if (i < currentText.length) {
+                    textElement.textContent += currentText.charAt(i);
+                    i++;
+                    setTimeout(type, 150);
+                } else {
+                    setTimeout(() => {
+                        currentWord = (currentWord + 1) % typingWords.length;
+                        isTyping = false;
+                        typeWriter();
+                    }, 3000);
+                }
+            }
+            type();
+        }
+
+        function initThreeJS() {
+            try {
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                
+                const canvas = document.getElementById('three-canvas');
+                if (!canvas) return;
+                
+                renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setClearColor(0x000000, 0);
+
+                // Create animated cube
+                const cubeGeometry = new THREE.BoxGeometry(2, 2, 2);
+                const cubeMaterial = new THREE.MeshBasicMaterial({ 
+                    color: 0x667eea,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.6
+                });
+                cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+                cube.position.set(-8, -3, -5);
+                scene.add(cube);
+
+                // Create torus
+                const torusGeometry = new THREE.TorusGeometry(1.5, 0.5, 8, 25);
+                const torusMaterial = new THREE.MeshBasicMaterial({
+                    color: 0x764ba2,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.7
+                });
+                torus = new THREE.Mesh(torusGeometry, torusMaterial);
+                torus.position.set(8, 3, -5);
+                scene.add(torus);
+
+                // Create particle system
+                const particleGeometry = new THREE.BufferGeometry();
+                const particleCount = 2000;
+                const positions = new Float32Array(particleCount * 3);
+                const colors = new Float32Array(particleCount * 3);
+
+                for (let i = 0; i < particleCount * 3; i += 3) {
+                    positions[i] = (Math.random() - 0.5) * 100;
+                    positions[i + 1] = (Math.random() - 0.5) * 100;
+                    positions[i + 2] = (Math.random() - 0.5) * 100;
+                    
+                    colors[i] = Math.random();
+                    colors[i + 1] = Math.random() * 0.5 + 0.5;
+                    colors[i + 2] = 1;
+                }
+
+                particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+                
+                const particleMaterial = new THREE.PointsMaterial({
+                    size: 1.5,
+                    transparent: true,
+                    opacity: 0.8,
+                    vertexColors: true
+                });
+
+                particles = new THREE.Points(particleGeometry, particleMaterial);
+                scene.add(particles);
+
+                camera.position.z = 8;
+
+                // Mouse movement
+                document.addEventListener('mousemove', (event) => {
+                    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                animate();
+            } catch (error) {
+                console.warn('Three.js initialization failed:', error);
+            }
+        }
+
+        function animate() {
+            if (!renderer || !scene || !camera) return;
+            
+            requestAnimationFrame(animate);
+
+            const time = Date.now() * 0.001;
+
+            if (cube) {
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                cube.position.y = -3 + Math.sin(time) * 0.5;
+            }
+
+            if (torus) {
+                torus.rotation.x += 0.005;
+                torus.rotation.z += 0.015;
+                torus.position.y = 3 + Math.cos(time) * 0.5;
+            }
+
+            if (particles) {
+                particles.rotation.y += 0.002;
+                particles.rotation.x = Math.sin(time * 0.5) * 0.1;
+            }
+
+            // Mouse interaction
+            if (cube) {
+                cube.rotation.y += mouseX * 0.01;
+                cube.rotation.x += mouseY * 0.01;
+            }
+            
+            if (torus) {
+                torus.rotation.y -= mouseX * 0.008;
+                torus.rotation.x -= mouseY * 0.008;
+            }
+
+            if (particles) {
+                particles.rotation.y += mouseX * 0.002;
+                particles.rotation.x += mouseY * 0.002;
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                const pageContent = section.querySelector('.page-content');
+                if (pageContent) {
+                    pageContent.classList.remove('active');
+                }
+            });
+
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            const activeNavLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
+            }
+
+            // Show target section
+            const targetSection = document.getElementById(pageId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+
+                // Animate page content
+                setTimeout(() => {
+                    const pageContent = targetSection.querySelector('.page-content');
+                    if (pageContent) {
+                        pageContent.classList.add('active');
+                    }
+                }, 100);
+            }
+        }
+
+        // Window resize handler
+        window.addEventListener('resize', () => {
+            if (camera && renderer) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            try {
+                initThreeJS();
+                setTimeout(typeWriter, 1000);
+                
+                // Initialize first page content
+                const activeSection = document.querySelector('.section.active');
+                if (activeSection) {
+                    const pageContent = activeSection.querySelector('.page-content');
+                    if (pageContent) {
+                        pageContent.classList.add('active');
+                    }
+                }
+            } catch (error) {
+                console.warn('Initialization error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
