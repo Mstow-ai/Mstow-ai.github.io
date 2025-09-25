@@ -515,37 +515,55 @@
             }
 
             /* Case Study Mobile */
-            .case-study-highlight {
-                padding: 2rem 1.5rem !important;
-                margin: 3rem 0.5rem !important;
+            .case-study-section {
+                padding: 2rem 1rem !important;
+                margin: 3rem 0 !important;
+                border-radius: 16px !important;
             }
 
-            .case-study-highlight h3 {
-                font-size: 1.8rem !important;
+            .case-study-section h3 {
+                font-size: 1.6rem !important;
                 margin-bottom: 0.8rem !important;
+                line-height: 1.3 !important;
             }
 
-            .case-study-highlight p {
+            .case-study-section > div:first-child p {
                 font-size: 1rem !important;
                 margin-bottom: 2rem !important;
+                padding: 0 0.5rem !important;
             }
 
-            .case-study-highlight > div:nth-child(2) {
+            .case-study-grid {
                 display: grid !important;
                 grid-template-columns: 1fr !important;
                 gap: 1.5rem !important;
+                margin: 0 !important;
             }
 
-            .case-study-highlight .flow-step {
-                padding: 1.5rem !important;
+            .case-study-grid > div {
+                padding: 1.5rem 1rem !important;
+                border-radius: 12px !important;
+                margin: 0 !important;
             }
 
-            .case-study-highlight .flow-step h4 {
-                font-size: 1.2rem !important;
+            .case-study-grid h4 {
+                font-size: 1.1rem !important;
+                margin-bottom: 0.8rem !important;
             }
 
-            .case-study-highlight .flow-step p {
-                font-size: 0.95rem !important;
+            .case-study-grid p {
+                font-size: 0.9rem !important;
+                line-height: 1.4 !important;
+                margin-bottom: 0.8rem !important;
+            }
+
+            .case-study-grid > div > div:first-child {
+                font-size: 2.5rem !important;
+                margin-bottom: 0.8rem !important;
+            }
+
+            .case-study-grid > div > div:last-child {
+                font-size: 0.8rem !important;
             }
 
             /* Reviews Mobile */
@@ -606,25 +624,40 @@
                 line-height: 1.6;
             }
 
-            .case-study-highlight {
-                padding: 1.5rem 1rem !important;
+            .case-study-section {
+                padding: 1.5rem 0.8rem !important;
                 margin: 2rem 0 !important;
+                border-radius: 12px !important;
             }
 
-            .case-study-highlight h3 {
-                font-size: 1.5rem !important;
+            .case-study-section h3 {
+                font-size: 1.4rem !important;
+                line-height: 1.2 !important;
             }
 
-            .case-study-highlight .flow-step {
-                padding: 1.2rem !important;
+            .case-study-section > div:first-child p {
+                font-size: 0.9rem !important;
+                padding: 0 !important;
             }
 
-            .case-study-highlight .flow-step div:first-child {
-                font-size: 2.5rem !important;
+            .case-study-grid > div {
+                padding: 1.2rem 0.8rem !important;
             }
 
-            .case-study-highlight .flow-step h4 {
-                font-size: 1.1rem !important;
+            .case-study-grid h4 {
+                font-size: 1rem !important;
+            }
+
+            .case-study-grid p {
+                font-size: 0.85rem !important;
+            }
+
+            .case-study-grid > div > div:first-child {
+                font-size: 2.2rem !important;
+            }
+
+            .case-study-grid > div > div:last-child {
+                font-size: 0.75rem !important;
             }
 
             .review-card {
@@ -755,13 +788,13 @@
             </div>
 
             <!-- Case Study at Bottom -->
-            <div style="background: rgba(102, 126, 234, 0.25); border: 1px solid rgba(102, 126, 234, 0.5); border-radius: 20px; padding: 3rem; margin: 4rem 0;">
+            <div class="case-study-section" style="background: rgba(102, 126, 234, 0.25); border: 1px solid rgba(102, 126, 234, 0.5); border-radius: 20px; padding: 3rem; margin: 4rem 0;">
                 <div style="text-align: center; margin-bottom: 3rem;">
                     <h3 style="color: #fff; font-size: 2rem; margin-bottom: 1rem;">🎯 Case Study: Lead Capturing Ecosystem</h3>
                     <p style="color: #f0f0f0; font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">See how our 4-layer automation system transforms lead generation into a self-operating machine:</p>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                <div class="case-study-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
                     <div style="background: rgba(255,255,255,0.2); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.25); text-align: center;">
                         <div style="font-size: 3rem; margin-bottom: 1rem;">🕸️</div>
                         <h4 style="color: #fff; font-size: 1.3rem; margin-bottom: 1rem;">1. Capture Everywhere</h4>
