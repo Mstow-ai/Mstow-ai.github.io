@@ -396,6 +396,99 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* Reviews Page Styles */
+        .reviews-intro {
+            text-align: center;
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .review-item {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .review-quote {
+            color: #f5f5f5;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .review-author {
+            border-top: 1px solid rgba(255,255,255,0.25);
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .author-name {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-title {
+            color: #87ceeb;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .author-industry {
+            color: #d0d0d0;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .reviews-cta {
+            text-align: center;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(102, 126, 234, 0.4);
+        }
+
+        .reviews-cta h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .reviews-cta p {
+            color: #f0f0f0;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reviews-cta .btn {
+            font-size: 1.2rem;
+            padding: 1.5rem 3rem;
+        }
+
         /* Page transition */
         .page-content {
             opacity: 0;
@@ -608,103 +701,69 @@
             }
 
             /* Reviews Mobile */
-            #reviews {
-                overflow-x: hidden !important;
-                width: 100vw !important;
-                max-width: 100vw !important;
+            /* Reviews Page Mobile - Simplified */
+            .reviews-intro {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+                padding: 0 0.5rem;
             }
 
-            #reviews .page-content {
-                padding: 6rem 1rem 3rem 1rem !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                box-sizing: border-box !important;
-                overflow-x: hidden !important;
+            .reviews-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0;
+                margin-bottom: 2rem;
             }
 
-            #reviews .section-title {
-                padding: 0 !important;
-                word-wrap: break-word !important;
-                font-size: 1.8rem !important;
-                max-width: 100%;
+            .review-item {
+                padding: 1.5rem;
+                border-radius: 16px;
             }
 
-            #reviews .page-content > p {
-                padding: 0 !important;
-                font-size: 0.95rem !important;
-                word-wrap: break-word !important;
-                line-height: 1.5 !important;
-                max-width: 100%;
+            .stars {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
             }
 
-            .reviews-grid {
-                display: grid !important;
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                overflow-x: hidden !important;
+            .review-quote {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 1.5rem;
             }
 
-            .review-card {
-                padding: 1.5rem !important;
-                margin: 0 !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                box-sizing: border-box !important;
-                overflow: hidden !important;
+            .review-author {
+                padding-top: 1.5rem;
             }
 
-            .review-card * {
-                max-width: 100% !important;
-                word-wrap: break-word !important;
-                overflow-wrap: break-word !important;
+            .author-name {
+                font-size: 0.95rem;
             }
 
-            .review-text {
-                font-size: 0.9rem !important;
-                line-height: 1.45 !important;
-                padding: 0 !important;
-                margin-bottom: 2rem !important;
+            .author-title {
+                font-size: 0.85rem;
             }
 
-            .review-name {
-                font-size: 0.95rem !important;
+            .author-industry {
+                font-size: 0.8rem;
             }
 
-            .review-title {
-                font-size: 0.85rem !important;
+            .reviews-cta {
+                padding: 2rem 1rem;
+                margin: 0;
             }
 
-            .review-industry {
-                font-size: 0.8rem !important;
+            .reviews-cta h3 {
+                font-size: 1.4rem;
             }
 
-            #reviews .page-content > div:last-child {
-                padding: 2rem 1rem !important;
-                margin: 0 !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                box-sizing: border-box !important;
+            .reviews-cta p {
+                font-size: 0.95rem;
+                padding: 0 0.5rem;
             }
 
-            #reviews .page-content > div:last-child * {
-                max-width: 100% !important;
-                word-wrap: break-word !important;
-            }
-
-            #reviews .page-content > div:last-child h3 {
-                font-size: 1.4rem !important;
-                line-height: 1.3 !important;
-                padding: 0 !important;
-            }
-
-            #reviews .page-content > div:last-child p {
-                font-size: 0.95rem !important;
-                padding: 0 !important;
-                line-height: 1.5 !important;
+            .reviews-cta .btn {
+                font-size: 1rem;
+                padding: 1rem 2rem;
             }
         }
 
@@ -1032,36 +1091,36 @@
     <div id="reviews" class="section">
         <div class="page-content">
             <h2 class="section-title">Client Success Stories</h2>
-            <p style="text-align: center; color: #e0e0e0; font-size: 1.2rem; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;">See how our multi-layered AI automation systems have transformed businesses across different industries.</p>
+            <p class="reviews-intro">See how our multi-layered AI automation systems have transformed businesses across different industries.</p>
             
-            <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 3rem; margin-bottom: 4rem;">
+            <div class="reviews-container">
                 
-                <div class="review-card" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 3rem;">
-                    <div style="color: #ffd700; font-size: 2rem; margin-bottom: 1.5rem; text-align: center;">★★★★★</div>
-                    <p class="review-text" style="color: #f5f5f5; font-size: 1.2rem; line-height: 1.7; margin-bottom: 2.5rem; text-align: center;">"Architect AI transformed our lead generation completely. Their multi-layer automation system increased our qualified leads by 300% while reducing our manual workload by 75%. The integration was seamless and their team understood our educational platform perfectly."</p>
-                    <div style="border-top: 1px solid rgba(255,255,255,0.25); padding-top: 2rem; text-align: center;">
-                        <div class="review-name" style="color: #fff; font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem;">Henry Sheffield</div>
-                        <div class="review-title" style="color: #87ceeb; font-size: 1rem; margin-bottom: 1rem;">CEO, SummitStudy.app</div>
-                        <div class="review-industry" style="color: #d0d0d0; font-size: 0.9rem; font-style: italic;">Educational Technology Platform</div>
+                <div class="review-item">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-quote">"Architect AI transformed our lead generation completely. Their multi-layer automation system increased our qualified leads by 300% while reducing our manual workload by 75%. The integration was seamless and their team understood our educational platform perfectly."</p>
+                    <div class="review-author">
+                        <div class="author-name">Henry Sheffield</div>
+                        <div class="author-title">CEO, SummitStudy.app</div>
+                        <div class="author-industry">Educational Technology Platform</div>
                     </div>
                 </div>
 
-                <div class="review-card" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px; padding: 3rem;">
-                    <div style="color: #ffd700; font-size: 2rem; margin-bottom: 1.5rem; text-align: center;">★★★★★</div>
-                    <p class="review-text" style="color: #f5f5f5; font-size: 1.2rem; line-height: 1.7; margin-bottom: 2.5rem; text-align: center;">"Working with Architect AI was a game-changer for our agency. They built us a comprehensive client management ecosystem that automated everything from initial inquiries to project delivery. Our efficiency improved by 400% and client satisfaction scores went through the roof."</p>
-                    <div style="border-top: 1px solid rgba(255,255,255,0.25); padding-top: 2rem; text-align: center;">
-                        <div class="review-name" style="color: #fff; font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem;">Hugo Deszc</div>
-                        <div class="review-title" style="color: #87ceeb; font-size: 1rem; margin-bottom: 1rem;">Founder, Aether Loom Web Agency</div>
-                        <div class="review-industry" style="color: #d0d0d0; font-size: 0.9rem; font-style: italic;">Digital Marketing & Web Development</div>
+                <div class="review-item">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-quote">"Working with Architect AI was a game-changer for our agency. They built us a comprehensive client management ecosystem that automated everything from initial inquiries to project delivery. Our efficiency improved by 400% and client satisfaction scores went through the roof."</p>
+                    <div class="review-author">
+                        <div class="author-name">Hugo Deszc</div>
+                        <div class="author-title">Founder, Aether Loom Web Agency</div>
+                        <div class="author-industry">Digital Marketing & Web Development</div>
                     </div>
                 </div>
                 
             </div>
             
-            <div style="text-align: center; background: rgba(102, 126, 234, 0.2); border-radius: 20px; padding: 3rem; border: 1px solid rgba(102, 126, 234, 0.4);">
-                <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 1rem;">Ready to Join Our Success Stories?</h3>
-                <p style="color: #f0f0f0; font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Let's build a custom AI automation ecosystem that delivers the same transformational results for your business.</p>
-                <a href="#" onclick="showPage('contact')" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.5rem 3rem;">Start Your Success Story</a>
+            <div class="reviews-cta">
+                <h3>Ready to Join Our Success Stories?</h3>
+                <p>Let's build a custom AI automation ecosystem that delivers the same transformational results for your business.</p>
+                <a href="#" onclick="showPage('contact')" class="btn btn-primary">Start Your Success Story</a>
             </div>
         </div>
     </div>
